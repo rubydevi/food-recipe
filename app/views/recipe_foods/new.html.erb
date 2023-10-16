@@ -1,0 +1,24 @@
+
+
+<section class="recipe-food-section flex justify-center items-center">
+  <div class="recipe-food-container">
+    <h2 class="text-2xl font-semibold">Add new ingredient to:</h2>
+    <h3 class="text-center"><%= @recipe.name %></h3>
+
+    <div class="recipe-food-form-container mt-5 border p-5">
+      <%= form_with model: [@recipe, @recipe_food], class: "needs-validation", novalidate: true do |f|%>
+        <div class="form-group mb-5">
+          <%= f.collection_select :food_id, Food.order(:name), :id, :name_with_measurement_unit, { prompt: "Choose ingredients" }, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-5">
+          <%= f.number_field :quantity, placeholder: 'Quantity', required: true, step: '0.01', class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-5">
+          <%= f.submit "ADD NEW INGREDIENT", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
