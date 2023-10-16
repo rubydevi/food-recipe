@@ -8,7 +8,13 @@ Rails.application.routes.draw do
 
   resources :foods, only: [:index, :show, :new, :create, :destroy]
   resources :public_recipes, only: [:index]
-  # get routes
-  get 'shopping_list', to: 'shopping_lists#show'
-  get 'public_recipes', to: 'recipes#public_recipes'
+
+  resources :shopping_lists, only: [:index] do
+    collection do
+      get 'generate'
+    end
+  end
+
+  # Renamed the route to follow Rails conventions
+  get 'public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
 end
