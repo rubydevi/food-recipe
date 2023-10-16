@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :recipes do
-    resources :recipes_foods, only: [:new, :create, :destroy]
+    resources :recipe_foods, only: [:new, :create, :destroy]
   end
 
   resources :foods, only: [:index, :show, :new, :create, :destroy]
@@ -15,6 +15,5 @@ Rails.application.routes.draw do
     end
   end
 
-  # Renamed the route to follow Rails conventions
-  get 'public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
+  get 'public_recipes_custom', to: 'recipes#public_recipes', as: 'public_recipes_custom'
 end
