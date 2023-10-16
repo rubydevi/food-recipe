@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="col-12 text-center">
+    <h1 class="text-primary">Public Recipes</h1>
+  </div>
+  <% @recipes.includes(:user).each do |recipe| %>
+    <div class="card mb-5">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4" style="display:flex;flex-direction:column;">
+            <h3><%= recipe.name %></h3>
+            <span class="text-primary">By: <%= recipe.user.name %></span>
+          </div>
+          <div class="col-8">
+            <p>
+              Total food items: $10.00
+            </p>
+            <p>
+              Total price: $10.00
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
