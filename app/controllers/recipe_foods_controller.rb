@@ -1,11 +1,11 @@
 class RecipeFoodsController < ApplicationController
   def new
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
     @recipe_food = @recipe.recipe_foods.new
   end
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
     @recipe_food = @recipe.recipe_foods.new(recipe_foods_params)
 
     if @recipe_food.save
@@ -16,7 +16,7 @@ class RecipeFoodsController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.includes(:recipe_foods).find(params[:recipe_id])
     @recipe_food = RecipeFood.find(params[:id])
     @recipe_food.destroy!
 

@@ -2,12 +2,12 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = current_user.recipes
+    @recipes = current_user.recipes.includes(:recipe_foods, :foods)
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    @recipe_foods = @recipe.recipe_foods.includes(:food)
+    @recipe = Recipe.includes(:recipe_foods, :foods).find(params[:id])
+    @recipe_foods = @recipe.recipe_foods
     @preparation_time_hours = @recipe.preparation_time_hours
     @preparation_time_minutes = @recipe.preparation_time_minutes
     @cooking_time_hours = @recipe.cooking_time_hours

@@ -4,7 +4,7 @@ class ShoppingListsController < ApplicationController
     return unless recipe_id.present?
 
     # Fetch Recipe
-    @recipe = Recipe.find_by(id: recipe_id)
+    @recipe = Recipe.includes(recipe_foods: :food).find_by(id: recipe_id)
     return redirect_to root_path, alert: 'Recipe not found' unless @recipe
 
     # Fetch User Foods
