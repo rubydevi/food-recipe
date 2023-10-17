@@ -1,13 +1,13 @@
 <div class="container mt-5">
   <div class="col-12 text-center">
-    <h1 class="text-primary">Public Recipes</h1>
+    <h1 class="text text-primary">Public Recipes</h1>
   </div>
   <% @recipes.includes(:user).each do |recipe| %>
     <div class="card mb-5">
       <div class="card-body">
         <div class="row">
           <div class="col-4" style="display:flex;flex-direction:column;">
-            <%= link_to recipe_path(recipe) do %>
+            <%= link_to recipe_path(recipe), class: "text-decoration-none" do %>
               <h3><%= recipe.name %></h3>
               <span class="text-primary">By: <%= recipe.user.name %></span>
             <% end %>
