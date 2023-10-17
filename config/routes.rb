@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :recipes do
+    member do
+      patch :toggle_public
+    end
     resources :recipe_foods, only: [:new, :create, :destroy]
   end
 
