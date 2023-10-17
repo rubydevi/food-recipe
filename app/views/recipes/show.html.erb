@@ -81,7 +81,8 @@
                 <th><%= recipe_food.quantity %></th>
                 <th><%= recipe_food.total_price %></th>
                 <th>
-                  <%= button_to 'Delete', recipe_recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), method: :delete, class: 'btn btn-danger btn-sm' %>
+                  <%= button_to 'Delete', recipe_recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), method: :delete, class: 'btn btn-danger btn-sm',
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
                 </th>
               </tr>
             <% end %>
