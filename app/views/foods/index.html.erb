@@ -11,7 +11,7 @@
           <tr>
             <th>Food</th>
             <th>Measurement unit</th>
-            <th>Unit price</th>
+            <th>Unit price (in INR)</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -20,9 +20,9 @@
             <tr>
               <td><%= food.name %></td>
               <td><%= food.measurement_unit %></td>
-              <td><%= food.price %></td>
+              <td>&#x20b9; <%= food.price %></td>
               <td>
-<%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link' %>
+                <%= button_to "Delete", food_path(food), method: :delete, data: { turbo_method: :delete, confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-link' %>
               </td>
             </tr>
           <% end %>
