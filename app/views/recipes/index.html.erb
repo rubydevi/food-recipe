@@ -2,21 +2,23 @@
   <%= link_to "Add Recipe", new_recipe_path, class: "btn btn-primary mb-3" %>
   <% @recipes.each do |recipe| %>
     <div class="card mb-5">
-      <%= link_to recipe_path(recipe) do %>
-        <div class="card-body">
-          <article class="col-12 row">
-            <div class="col-4" style="display:flex;flex-direction:column;align-items: center;">
+      <div class="card-body">
+        <article class="col-12 row">
+          <div class="col-4" style="display:flex;flex-direction:column;align-items: center;">
+            
+            <%= link_to recipe_path(recipe), class: "btn btn-link text-decoration-none mb-2" do %>
               <h1><%= recipe.name %></h1>
-              <%= link_to "REMOVE", recipe_path(recipe), method: :delete, class: "btn btn-outline-danger", data: { confirm: 'Are you sure?' } %>
-            </div>
-            <div class="col-8">
-              <p>
-                <%= recipe.description %>
-              </p>
-            </div>
-          </article>
-        </div>
-      <% end %>
+            <% end %>
+
+            <%= button_to "REMOVE", recipe_path(recipe), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-outline-danger' %>
+          </div>
+          <div class="col-8">
+            <p>
+              <%= recipe.description %>
+            </p>
+          </div>
+        </article>
+      </div>
     </div>
   <% end %>
 </div>
