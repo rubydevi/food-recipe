@@ -1,24 +1,41 @@
-<h1>Welcome <%= current_user.name %>!</h1>
+<main class="main">
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Welcome <%= current_user.name %>!</h1>
+        <p class="lead text-muted">Discover Delicious Recipes: A Culinary Journey Awaits!</p>
+        <p>
+          <a href="<%= foods_path %>" class="btn btn-primary my-2">Foods</a>
+          <a href="<%= recipes_path %>" class="btn btn-secondary my-2">Recipes</a>
+        </p>
+      </div>
+    </div>
+  </section>
 
-<p>Here are some of our featured recipes:</p>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-<ul>
-  <%
-=begin%>
- <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
-  <% end %> 
-<%
-=end%>
-</ul>
+        <% @foods.each do |food| %>
+          <div class="col">
+            <div class="card shadow-sm">
 
-<p>Don't see what you're looking for? Search for a recipe:</p>
-
-<%
-=begin%>
- <%= form_tag recipes_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", name: nil %>
-<% end %> 
-<%
-=end%>
+              <div class="card-body">
+                <p class="card-text">
+                  <%= link_to food.name, recipe_path(food), class: "text"  %>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
