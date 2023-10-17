@@ -2,7 +2,7 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @foods = Food.includes(:user).all
+    @foods = Food.all
   end
 
   def new
