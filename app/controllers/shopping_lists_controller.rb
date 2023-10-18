@@ -13,7 +13,6 @@ class ShoppingListsController < ApplicationController
     @recipe_foods = @recipe.recipe_foods.includes(:food)
 
     @needed_money = @recipe_foods.sum { |recipe_food| recipe_food.food.price * recipe_food.quantity }
-
   end
 
   def generate
