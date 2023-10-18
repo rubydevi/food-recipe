@@ -30,6 +30,10 @@ RSpec.describe 'Recipe Index Page', type: :feature do
     visit recipes_path(user_id: @user.id)
   end
   describe 'GET /recipes' do
+    it 'can see all the recipes added' do
+      expect(@recipes.count).to eq(2)
+    end
+
     it "can see each recipe's name." do
       @recipes.each do |recipe|
         expect(page).to have_content(recipe.name)
