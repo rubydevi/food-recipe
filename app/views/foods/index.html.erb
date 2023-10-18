@@ -1,10 +1,12 @@
 <main class="container mt-3">
   <div class="card">
-    <div class="card-header">
-      <div class="col-12">
-        <%= link_to 'Add food', new_food_path, class: 'btn btn-primary mb-3 float-end' %>
+    <% if user_signed_in? %>
+      <div class="card-header">
+        <div class="col-12">
+          <%= link_to 'Add food', new_food_path, class: 'btn btn-primary mb-3 float-end' %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="card-body">
       <% if @foods.present? %>
         <small class="text text-success small">
@@ -31,9 +33,18 @@
               <td><%= food.name %></td>
               <td><%= food.measurement_unit %></td>
               <td>&#x20b9; <%= food.price %></td>
+              <% if user_signed_in? %>
               <td>
-                <%= button_to "Delete", food_path(food), method: :delete, data: { turbo_method: :delete, confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-link' %>
+                <%= button_to "Delete",
+                  food_path(food),
+                  method: :delete,
+                  data: { 
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  },
+                  class: 'btn btn-link' %>
               </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

@@ -2,11 +2,18 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Welcome <%= current_user.name %>!</h1>
+        <h1 class="fw-light">
+          Welcome 
+          <% if current_user.present? %>
+            <%= current_user.name %>!
+          <% else %>
+            to the Recipe App!
+          <% end %>
+        </h1>
         <p class="lead text-muted">Discover Delicious Recipes: A Culinary Journey Awaits!</p>
         <p>
           <a href="<%= foods_path %>" class="btn btn-primary my-2">Foods</a>
-          <a href="<%= recipes_path %>" class="btn btn-secondary my-2">Recipes</a>
+          <a href="<%= public_recipes_path %>" class="btn btn-secondary my-2">Recipes</a>
         </p>
       </div>
     </div>
@@ -22,7 +29,7 @@
 
               <div class="card-body">
                 <p class="card-text">
-                  <%= link_to food.name, recipe_path(food), class: "text"  %>
+                  <%= link_to food.name, public_recipes_path, class: "text-capitalize text-decoration-none"  %>
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
