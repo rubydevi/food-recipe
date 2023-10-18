@@ -54,8 +54,7 @@ The Recipe app keeps track of all your recipes, ingredients, and inventory. It w
 
 - MVC
 - Integration Specs
-- Authentication & Authorization
-- API Endpoints
+- Devise Authentication
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -123,8 +122,8 @@ To test the project, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Forms
-- Multiple Roles
+- Authorization
+- Inventory
 - User Management System
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
