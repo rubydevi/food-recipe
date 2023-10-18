@@ -12,16 +12,8 @@ class ShoppingListsController < ApplicationController
 
     @recipe_foods = @recipe.recipe_foods.includes(:food)
 
-    @items_to_buy = 0
-    @needed_money = 0
+    @needed_money = @recipe_foods.sum { |recipe_food| recipe_food.food.price * recipe_food.quantity }
 
-    @recipe_foods.each do |recipe_food|
-      food = recipe_food.food
-      if recipe_food.quantity < food.quantity
-        @items_to_buy += food.quantity - recipe_food.quantity
-        @needed_money += food.price * @items_to_buy
-      end
-    end
   end
 
   def generate
