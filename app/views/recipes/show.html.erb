@@ -40,7 +40,7 @@
             </ul>
           </div>
 
-          <div class="col-4 justify-content-center d-flex" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click on text to update">
+          <div class="col-4 justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click on text to update">
             <% if current_user == @recipe.user %>
               <div class="form-group d-flex gap-3 align-items-center form-check form-switch">
                 <%= button_to "#{@recipe.public ? 'Private' : 'Public'}", toggle_public_recipe_path(@recipe), method: :patch,

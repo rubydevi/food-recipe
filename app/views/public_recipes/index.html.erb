@@ -17,7 +17,7 @@
               Total food items: <%= recipe.recipe_foods.count %>
             </p>
             <p>
-              Total price: $10.00
+              Total price: &#x20b9; <%= number_to_currency(recipe.recipe_foods.sum { |rf| rf.food.price * rf.quantity }, unit: '') %>
             </p>
           </div>
         </div>
