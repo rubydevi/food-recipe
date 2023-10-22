@@ -1,0 +1,38 @@
+<!-- app/views/foods/new.html.erb -->
+
+<main class="container mt-3">
+  <div class="card">
+    <div class="card-header">
+      <div class="col-12">
+        <h2>Add Food</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= form_for @food do |f| %>
+        <div class="mb-3">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :measurement_unit %>
+          <%= f.text_field :measurement_unit, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :price %>
+          <%= f.number_field :price, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :quantity %>
+          <%= f.number_field :quantity, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit 'Create Food', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,94 @@
+
+
+<section class="container mt-5">
+  <div class="row">
+    <div class="card mb-3">
+      <div class="card-body">
+
+        <div class="col-12 text-center">
+          <h1 class="text text-primary"><%= @recipe.name %></h1>
+        </div>
+        
+        <div class="col-12 row p-5">
+          <div class="col-8">            
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h3 class="capitalize">Preparation time</h3>
+                <div class="flex text-sm justify-content-evenly">
+                  <% if @preparation_time_hours > 0 %>
+                    <%= "#{@preparation_time_hours} hr" %>
+                  <% end %>
+                  <% if @preparation_time_minutes > 0 %>
+                    <%= "#{@preparation_time_minutes} min" %>
+                  <% end %>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <h3 class="capitalize">Cooking time</h3>
+                <div class="flex text-sm justify-content-evenly">
+                  <% if @cooking_time_hours > 0 %>
+                    <%= "#{@cooking_time_hours} hr" %>
+                  <% end %>
+                  <% if @cooking_time_minutes > 0 %>
+                    <%= "#{@cooking_time_minutes} min" %>
+                  <% end %>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <%= @recipe.description %>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-4 justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click on text to update">
+            <% if current_user == @recipe.user %>
+              <div class="form-group d-flex gap-3 align-items-center form-check form-switch">
+                <%= button_to "#{@recipe.public ? 'Private' : 'Public'}", toggle_public_recipe_path(@recipe), method: :patch,
+                  class: "btn btn-link link-offset-2 link-underline link-underline-opacity-0" %>
+                <%= button_tag type: 'submit', class: "btn" do %>
+                  <input type="checkbox" name="recipe[public]" class="form-check-input" disabled <%= 'checked' if @recipe.public? %>>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="col-12 p-3 mt-2">
+            <div class="d-flex justify-content-between">
+              <%= link_to "Generate shopping List", generate_shopping_lists_path(recipe_id: @recipe.id), class: 'btn btn-primary' %>
+              <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-primary mr-2' %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">          
+        <table class="table table-bordered table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>Food</th>
+              <th>Quantity</th>
+              <th>Value</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recipe.recipe_foods.each do |recipe_food| %>
+              <tr>
+                <th><%= recipe_food.food.name %></th>
+                <th><%= recipe_food.quantity %></th>
+                <th><%= recipe_food.total_price %></th>
+                <th>
+                  <%= button_to 'Delete', recipe_recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), method: :delete, class: 'btn btn-danger btn-sm',
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

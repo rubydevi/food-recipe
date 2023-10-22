@@ -1,0 +1,48 @@
+<main class="main">
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">
+          Welcome 
+          <% if current_user.present? %>
+            <%= current_user.name %>!
+          <% else %>
+            to the Recipe App!
+          <% end %>
+        </h1>
+        <p class="lead text-muted">Discover Delicious Recipes: A Culinary Journey Awaits!</p>
+        <p>
+          <a href="<%= foods_path %>" class="btn btn-primary my-2">Foods</a>
+          <a href="<%= public_recipes_path %>" class="btn btn-secondary my-2">Recipes</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <% @foods.each do |food| %>
+          <div class="col">
+            <div class="card shadow-sm">
+
+              <div class="card-body">
+                <p class="card-text">
+                  <%= link_to food.name, public_recipes_path, class: "text-capitalize text-decoration-none"  %>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
